@@ -22,17 +22,18 @@ public class GameManager : MonoBehaviour
             winText.gameObject.SetActive(false);  // Hide win text initially
         }
 
-        // Spawn 10 flowers randomly in the field
+        // Spawn 10 flowers randomly inside the game walls
         if (flowerPrefab != null)
         {
             for (int i = 0; i < 10; i++)
             {
                 Vector3 pos = new Vector3(
-                    Random.Range(-8f, 8f), 
-                    Random.Range(-3f, 4f), 
+                    Random.Range(585f, 613f),   // X: between left wall (584.5) and right wall (613.5)
+                    Random.Range(385f, 404f),   // Y: between bottom wall (384) and top wall (405)
                     0
                 );
-                Instantiate(flowerPrefab, pos, Quaternion.identity);
+                GameObject flower = Instantiate(flowerPrefab, pos, Quaternion.identity);
+                Debug.Log($"Flower {i} spawned at {pos}");
             }
         }
         else
